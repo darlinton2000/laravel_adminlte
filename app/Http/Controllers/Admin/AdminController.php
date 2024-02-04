@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Autênticação

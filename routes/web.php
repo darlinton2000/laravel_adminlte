@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Site\HomeController as SiteHomeController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Site\SiteController;
+use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +15,9 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 |
 */
 
-Route::get('/', [SiteHomeController::class, 'index']);
+// Site inicial
+Route::get('/', [SiteController::class, 'index']);
 
 Route::prefix('painel')->group(function () {
-   Route::get('/', [AdminHomeController::class, 'index']);
+   Route::get('/', [AdminController::class, 'index']);
 });
