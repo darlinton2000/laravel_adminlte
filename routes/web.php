@@ -25,12 +25,15 @@ Route::get('/', [SiteController::class, 'index']);
 Auth::routes();
 
 Route::prefix('painel')->group(function () {
+    // Administrativo
    Route::get('/', [AdminController::class, 'index'])->name('admin');
 
+   // Login
     Route::get('login', [LoginController::class, 'index'])->name('login');
     Route::post('login', [LoginController::class, 'authenticated']);
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
+    // Cadastro
     Route::get('register', [RegisterController::class, 'index'])->name('register');
     Route::post('register', [RegisterController::class, 'register']);
 });
