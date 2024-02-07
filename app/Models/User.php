@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image'
     ];
 
     /**
@@ -42,4 +44,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Retorna a imagem do usuário autênticado para o dashboard
+     *
+     * @return UrlGenerator
+     */
+    public static function adminlteImage(): UrlGenerator
+    {
+        $loggedId = intval(Auth::id());
+        $user = User::find($loggedId);
+
+        if ($user->image){
+            return url("storage/$user->image");
+        } else {
+            return url("/user_default.png");
+        }
+    }
 }

@@ -305,7 +305,8 @@ return [
         [
             'text'        => 'Usuários',
             'url'         => 'painel/users',
-            'icon'        => 'fas fa-users'
+            'icon'        => 'fas fa-users',
+            'can'         => 'edit-users'
         ],
         ['header' => 'account_settings'],
         [
