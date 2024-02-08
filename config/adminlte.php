@@ -310,8 +310,8 @@ return [
         ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Perfil',
+            'url'  => 'painel/profile',
             'icon' => 'fas fa-fw fa-user',
         ]
     ],

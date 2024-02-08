@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Auth;
@@ -40,4 +41,8 @@ Route::prefix('painel')->group(function () {
 
     // Usuário
     Route::resource('users', UserController::class);
+
+    // Perfil
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('profile/save', [ProfileController::class, 'save'])->name('profile.save');
 });
