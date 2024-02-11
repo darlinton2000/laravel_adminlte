@@ -91,7 +91,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect()->route('admin');
+        return redirect()->route('home');
     }
 
     /**

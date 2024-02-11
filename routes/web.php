@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Site inicial
-Route::get('/', [SiteController::class, 'index']);
+Route::get('/', [SiteController::class, 'index'])->name('home');
 
 // Autenticação
 Auth::routes();
