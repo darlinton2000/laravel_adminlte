@@ -11,3 +11,5 @@ Tela Inicial
 ![01](https://github.com/darlinton2000/laravel_adminlte/assets/46008964/84c1d204-ef4e-4885-9e0a-0bd7413bcaf9)
 
 Dashboard
+
+![02](https://github.com/darlinton2000/laravel_adminlte/assets/46008964/73b42da7-5d66-43f3-a2b3-300eb7a03327)
