@@ -8,6 +8,6 @@
 
 Tela Inicial
 
-Link
+![01](https://github.com/darlinton2000/laravel_adminlte/assets/46008964/84c1d204-ef4e-4885-9e0a-0bd7413bcaf9)
 
 Dashboard
