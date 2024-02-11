@@ -9,7 +9,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -56,7 +55,6 @@ class UserController extends Controller
     {
         $data = $request->only([
             'name',
-            'image',
             'email',
             'password',
             'password_confirmation'
@@ -64,7 +62,6 @@ class UserController extends Controller
 
         $validator = Validator::make($data, [
             'name' => ['required', 'string', 'max:100'],
-            'image' => ['nullable', 'image', 'max:3072'],
             'email' => ['required', 'string', 'email', 'max:200', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
@@ -75,14 +72,8 @@ class UserController extends Controller
                 ->withInput();
         }
 
-        if ($data['image']) {
-            $path = $data['image']->store('users');
-            $data['image'] = $path;
-        }
-
         $user = new User;
         $user->name = $data['name'];
-        $user->image = $data['image'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
         $user->save();
@@ -131,7 +122,6 @@ class UserController extends Controller
         if ($user) {
             $data = $request->only([
                 'name',
-                'image',
                 'email',
                 'password',
                 'password_confirmation'
@@ -139,23 +129,13 @@ class UserController extends Controller
 
             $validator = Validator::make([
                 'name'  => $data['name'],
-                'image' => $data['image'],
                 'email' => $data['email']
             ],  [
                 'name'  => ['required', 'string', 'max:100'],
-                'image' => ['nullable', 'image', 'max:3072'],
                 'email' => ['required', 'string', 'email', 'max:100']
             ]);
 
             $user->name = $data['name'];
-
-            if ($data['image']) {
-                if ($user->image && Storage::exists($user->image)) {
-                    Storage::delete($user->image);
-                }
-                $path = $data['image']->store('users');
-                $user->image = $path;
-            }
 
             if ($user->email != $data['email']) {
                 $hasEmail = User::where('email', $data['email'])->get();
@@ -210,10 +190,6 @@ class UserController extends Controller
 
         if ($loggedId !== $id) {
             $user = User::find($id);
-
-            if ($user->image && Storage::exists($user->image)) {
-                Storage::delete($user->image);
-            }
 
             $user->delete();
         }

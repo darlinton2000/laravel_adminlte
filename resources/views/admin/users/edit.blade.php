@@ -13,7 +13,7 @@
         <div class="alert alert-danger">
             <ul>
                 <h5><i class="icon fas fa-ban"></i>Ocorreu um errro.</h5>
-                
+
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -26,24 +26,10 @@
         @method('put')
 
         <div class="card-body">
-
-            <div class="form-group row">
-                @if ($user->image)
-                    <img class="rounded-circle" src="{{ url("storage/$user->image")}}" alt="{{ $user->name }}" width="80" height="80">
-                @else
-                    <img class="rounded-circle" src="{{ url("/user_default.png")}}" alt="{{ $user->name }}" width="80" height="80">
-                @endif
-            </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nome Completo</label>
                 <div class="col-sm-10">
                     <input type="text" name="name" value="{{ $user->name }}" class="form-control @error('name') is-invalid @enderror" placeholder="Nome Completo">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Foto</label>
-                <div class="col-sm-10">
-                    <input type="file" name="image" value="{{ $user->image }}" class="form-control @error('image') is-invalid @enderror">
                 </div>
             </div>
             <div class="form-group row">
@@ -69,7 +55,6 @@
         <div class="card-footer">
             <button type="submit" value="Salvar" class="btn btn-success">Salvar</button>
         </div>
-
     </form>
 
 @endsection

@@ -12,7 +12,7 @@
         <div class="alert alert-danger">
             <ul>
                 <h5><i class="icon fas fa-ban"></i>Ocorreu um errro.</h5>
-                
+
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -28,12 +28,6 @@
                 <label class="col-sm-2 col-form-label">Nome Completo</label>
                 <div class="col-sm-10">
                     <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Nome Completo">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Foto</label>
-                <div class="col-sm-10">
-                    <input type="file" name="image" value="{{ old('image') }}" class="form-control @error('image') is-invalid @enderror">
                 </div>
             </div>
             <div class="form-group row">
@@ -59,7 +53,6 @@
         <div class="card-footer">
             <button type="submit" value="Cadastrar" class="btn btn-success">Cadastrar</button>
         </div>
-
     </form>
 
 @endsection

@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -53,7 +52,6 @@ class ProfileController extends Controller
         if ($user) {
             $data = $request->only([
                 'name',
-                'image',
                 'email',
                 'password',
                 'password_confirmation'
@@ -61,23 +59,13 @@ class ProfileController extends Controller
 
             $validator = Validator::make([
                 'name' => $data['name'],
-                'image' => $data['image'],
                 'email' => $data['email']
             ],  [
                 'name'  => ['required', 'string', 'max:100'],
-                'image' => ['nullable', 'image', 'max:3072'],
                 'email' => ['required', 'string', 'email', 'max:100']
             ]);
 
             $user->name = $data['name'];
-
-            if ($data['image']) {
-                if ($user->image && Storage::exists($user->image)) {
-                    Storage::delete($user->image);
-                }
-                $path = $data['image']->store('users');
-                $user->image = $path;
-            }
 
             if ($user->email != $data['email']) {
                 $hasEmail = User::where('email', $data['email'])->get();
